@@ -1,0 +1,28 @@
+# Assemble
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.yo-rc.json
+
+# Builds
+dist/
+
+# Extra
+pids
+logs
+results
+
+# Grunt
+npm-debug.log
+node_modules
+
+# IDE
+*.sublime-*
+
+# gh-pages build
+.grunt/
