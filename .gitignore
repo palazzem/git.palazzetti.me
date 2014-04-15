@@ -16,6 +16,7 @@ dist/
 pids
 logs
 results
+assets/
 
 # Grunt
 npm-debug.log
