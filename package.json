@@ -1,0 +1,49 @@
+{
+  "name": "emanuele-palazzetti",
+  "description": "Another memory commit.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/palazzem/emanuele-palazzetti",
+  "author": {
+    "name": "Emanuele Palazzetti",
+    "url": "http://github.com/palazzem/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/palazzem/emanuele-palazzetti.git"
+  },
+  "bugs": {
+    "url": "https://github.com/palazzem/emanuele-palazzetti/issues"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "test": "grunt assemble"
+  },
+  "devDependencies": {
+    "assemble": "~0.4.37",
+    "assemble-contrib-permalinks": "*",
+    "assemble-contrib-sitemap": "*",
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-connect": "~0.7.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-gh-pages": "^0.9.1",
+    "load-grunt-tasks": "^0.4.0",
+    "time-grunt": "~0.3.1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/palazzem/emanuele-palazzetti/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "assemble",
+    "templates",
+    "handlebars",
+    "site generator",
+    "site builder",
+    "grunt"
+  ]
+}
