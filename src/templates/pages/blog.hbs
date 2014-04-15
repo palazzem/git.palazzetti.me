@@ -1,8 +1,6 @@
 ---
 title: Blog
-posts: ['README.md']
+post: src/content/markdown.md
 ---
-<h1>Posts</h1>
-{{#each posts}}
-  {{md this}}
-{{/each}}
+<h1>{{title}}</h1>
+{{md post}}
