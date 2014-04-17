@@ -249,6 +249,7 @@ module.exports = function(grunt) {
           flatten: true,
           layout: 'default.hbs',
           layoutdir: '<%= config.src %>/templates/layouts',
+          data: '<%= config.src %>/data/*.{json,yml}',
           assets: '<%= config.dist %>/assets',
           partials: '<%= config.src %>/templates/partials/*.hbs',
           plugins: ['assemble-contrib-permalinks','assemble-contrib-sitemap'],
