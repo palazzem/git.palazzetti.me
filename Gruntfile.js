@@ -22,11 +22,16 @@ module.exports = function(grunt) {
         files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
         tasks: ['assemble']
       },
+      compass: {
+        files: ['<%= config.src %>/sass/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
+          '.tmp/css/{,*/}*.css',
           '<%= config.dist %>/{,*/}*.html',
           '<%= config.dist %>/assets/{,*/}*.css',
           '<%= config.dist %>/assets/{,*/}*.js',
@@ -46,9 +51,55 @@ module.exports = function(grunt) {
         options: {
           open: true,
           base: [
+            '.tmp',
             '<%= config.dist %>'
           ]
         }
+      }
+    },
+
+    // Compiles Sass to CSS and generates necessary files if requested
+    compass: {
+      options: {
+        loadAll: '<%= config.src %>/assets/gumby/sass/extensions',
+        sassDir: '<%= config.src %>/sass',
+        cssDir: '.tmp/css',
+        generatedImagesDir: '.tmp/img/generated',
+        imagesDir: '<%= config.src %>/img',
+        fontsDir: '<%= config.src %>/fonts',
+        importPath: '<%= config.src %>/assets',
+        httpImagesPath: '/img',
+        httpGeneratedImagesPath: '/img/generated',
+        httpFontsPath: '/css/fonts',
+        relativeAssets: true,
+        raw: 'Sass::Script::Number.precision = 10\n'
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= config.dist %>/img/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
+      }
+    },
+
+    // Add vendor prefixed css
+    autoprefixer: {
+      options: {
+        browsers: ['last 1 version']
+      },
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: '.tmp/css/',
+            src: '{,*/}*.css',
+            dest: '.tmp/css/'
+          }
+        ]
       }
     },
 
@@ -85,13 +136,15 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'clean',
     'assemble',
+    'compass:server',
     'connect:livereload',
     'watch'
   ]);
 
   grunt.registerTask('build', [
     'clean',
-    'assemble'
+    'assemble',
+    'compass:dist'
   ]);
 
   grunt.registerTask('default', [
