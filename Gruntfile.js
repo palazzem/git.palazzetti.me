@@ -31,6 +31,7 @@ module.exports = function(grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
+          '.tmp/*.html',
           '.tmp/css/{,*/}*.css',
           '<%= config.dist %>/{,*/}*.html',
           '<%= config.dist %>/assets/{,*/}*.css',
@@ -121,11 +122,9 @@ module.exports = function(grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
+      html: '.tmp/index.html',
       options: {
         dest: '<%= config.dist %>'
-      },
-      website: {
-        src: ['<%= config.src %>/templates/layouts/default.hbs']
       }
     },
 
@@ -175,7 +174,7 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: '<%= config.dist %>',
-            src: ['*.html'],
+            src: '*.html',
             dest: '<%= config.dist %>'
           }
         ]
@@ -200,6 +199,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: '.tmp',
+            dest: '<%= config.dist %>',
+            src: '*.html'
+          },
+          {
+            expand: true,
             cwd: '.tmp/img',
             dest: '<%= config.dist %>/img',
             src: ['generated/*']
@@ -218,7 +223,7 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%= config.src %>/assets/gumby/fonts/',
             dest: '.tmp/fonts/',
-            src: '*'
+            src: '**'
           }
         ]
       }
@@ -227,10 +232,12 @@ module.exports = function(grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'compass:server'
+        'compass:server',
+        'assemble'
       ],
       dist: [
         'compass:dist',
+        'assemble',
         'imagemin',
         'svgmin'
       ]
@@ -240,14 +247,14 @@ module.exports = function(grunt) {
       pages: {
         options: {
           flatten: true,
+          layout: 'default.hbs',
+          layoutdir: '<%= config.src %>/templates/layouts',
           assets: '<%= config.dist %>/assets',
-          layout: '<%= config.src %>/templates/layouts/default.hbs',
-          data: '<%= config.src %>/data/*.{json,yml}',
           partials: '<%= config.src %>/templates/partials/*.hbs',
           plugins: ['assemble-contrib-permalinks','assemble-contrib-sitemap'],
         },
         files: {
-          '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
+          '.tmp/': ['<%= config.src %>/templates/pages/*.hbs']
         }
       }
     },
@@ -283,11 +290,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('server', [
     'clean',
-    'assemble',
-
-    'clean:server',
-    'copy:dev',
     'concurrent:server',
+    'copy:dev',
     'autoprefixer',
     'connect:livereload',
     'watch'
@@ -295,15 +299,13 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'clean',
-    'assemble',
-
-    'useminPrepare:website',
     'concurrent:dist',
+    'useminPrepare',
     'autoprefixer',
     'concat',
     'copy:dist',
     'cssmin',
-    //'uglify',
+    // 'uglify',
     'rev',
     'usemin',
     'htmlmin'
