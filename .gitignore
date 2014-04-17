@@ -7,10 +7,11 @@ lib-cov
 *.out
 *.pid
 *.gz
-*.yo-rc.json
 
 # Builds
 dist/
+.sass-cache/
+.tmp/
 
 # Extra
 pids
