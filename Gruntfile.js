@@ -103,6 +103,138 @@ module.exports = function(grunt) {
       }
     },
 
+    // Renames files for browser caching purposes
+    rev: {
+      dist: {
+        files: {
+          src: [
+            '<%= config.dist %>/js/{,*/}*.js',
+            '<%= config.dist %>/css/{,*/}*.css',
+            '<%= config.dist %>/img/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= config.dist %>/css/fonts/*'
+          ]
+        }
+      }
+    },
+
+    // Reads HTML for usemin blocks to enable smart builds that automatically
+    // concat, minify and revision files. Creates configurations in memory so
+    // additional tasks can operate on them
+    useminPrepare: {
+      options: {
+        dest: '<%= config.dist %>'
+      },
+      website: {
+        src: ['<%= config.src %>/templates/layouts/default.hbs']
+      }
+    },
+
+    // Performs rewrites based on rev and the useminPrepare configuration
+    usemin: {
+      html: ['<%= config.dist %>/{,*/}*.html'],
+      css: ['<%= config.dist %>/css/{,*/}*.css'],
+      options: {
+        assetsDirs: ['<%= config.dist %>']
+      }
+    },
+
+    // The following *-min tasks produce minified files in the dist folder
+    imagemin: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.src %>/img',
+            src: '{,*/}*.{png,jpg,jpeg,gif}',
+            dest: '<%= config.dist %>/img'
+          }
+        ]
+      }
+    },
+    svgmin: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.src %>/img',
+            src: '{,*/}*.svg',
+            dest: '<%= config.dist %>/img'
+          }
+        ]
+      }
+    },
+    htmlmin: {
+      dist: {
+        options: {
+          collapseWhitespace: true,
+          collapseBooleanAttributes: true,
+          removeCommentsFromCDATA: true,
+          removeOptionalTags: true
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.dist %>',
+            src: ['*.html'],
+            dest: '<%= config.dist %>'
+          }
+        ]
+      }
+    },
+
+    // Copies remaining files to places other tasks can use
+    copy: {
+      dist: {
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: '<%= config.src %>',
+            dest: '<%= config.dist %>',
+            src: [
+              '*.{ico,png,txt}',
+              'img/{,*/}*.{webp}',
+              'fonts/*'
+            ]
+          },
+          {
+            expand: true,
+            cwd: '.tmp/img',
+            dest: '<%= config.dist %>/img',
+            src: ['generated/*']
+          },
+          {
+            expand: true,
+            cwd: '<%= config.src %>/assets/gumby/fonts/',
+            dest: '<%= config.dist %>/fonts',
+            src: '**'
+          }
+        ]
+      },
+      dev: {
+        files: [
+          {
+            expand: true,
+            cwd: '<%= config.src %>/assets/gumby/fonts/',
+            dest: '.tmp/fonts/',
+            src: '*'
+          }
+        ]
+      }
+    },
+
+    // Run some tasks in parallel to speed up the build process
+    concurrent: {
+      server: [
+        'compass:server'
+      ],
+      dist: [
+        'compass:dist',
+        'imagemin',
+        'svgmin'
+      ]
+    },
+
     assemble: {
       pages: {
         options: {
@@ -121,7 +253,22 @@ module.exports = function(grunt) {
 
     // Before generating any new files,
     // remove any previously-created files.
-    clean: ['<%= config.dist %>/**/*.{html,xml}'],
+
+    clean: {
+      dist: {
+        files: [
+          {
+            dot: true,
+            src: [
+              '.tmp',
+              '<%= config.dist %>/*',
+              '!<%= config.dist %>/.git*'
+            ]
+          }
+        ]
+      },
+      server: '.tmp'
+    },
 
     // Automatically create/push gh-pages
     'gh-pages': {
@@ -136,7 +283,11 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'clean',
     'assemble',
-    'compass:server',
+
+    'clean:server',
+    'copy:dev',
+    'concurrent:server',
+    'autoprefixer',
     'connect:livereload',
     'watch'
   ]);
@@ -144,7 +295,17 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean',
     'assemble',
-    'compass:dist'
+
+    'useminPrepare:website',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'copy:dist',
+    'cssmin',
+    //'uglify',
+    'rev',
+    'usemin',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
