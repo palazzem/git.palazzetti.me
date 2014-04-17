@@ -25,6 +25,7 @@
     "assemble-contrib-permalinks": "*",
     "assemble-contrib-sitemap": "*",
     "grunt": "~0.4.4",
+    "grunt-autoprefixer": "^0.7.2",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-compass": "^0.7.2",
     "grunt-contrib-connect": "~0.7.1",
