@@ -62,7 +62,6 @@ module.exports = function(grunt) {
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
-        loadAll: '<%= config.src %>/assets/gumby/sass/extensions',
         sassDir: '<%= config.src %>/sass',
         cssDir: '.tmp/css',
         generatedImagesDir: '.tmp/img/generated',
@@ -208,24 +207,10 @@ module.exports = function(grunt) {
             cwd: '.tmp/img',
             dest: '<%= config.dist %>/img',
             src: ['generated/*']
-          },
-          {
-            expand: true,
-            cwd: '<%= config.src %>/assets/gumby/fonts/',
-            dest: '<%= config.dist %>/fonts',
-            src: '**'
           }
         ]
       },
       dev: {
-        files: [
-          {
-            expand: true,
-            cwd: '<%= config.src %>/assets/gumby/fonts/',
-            dest: '.tmp/fonts/',
-            src: '**'
-          }
-        ]
       }
     },
 
