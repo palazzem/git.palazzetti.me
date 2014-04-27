@@ -1,0 +1,20 @@
+// Blog styles
+// -----------
+
+.top-navbar {
+	top: 0;
+	height: $menu-height;
+	width: 100%;
+
+	position: fixed;
+	background-color: $menu-color;
+}
+
+.container {
+	margin-top: $menu-height;
+}
+
+h1, p {
+	font-family: 'Open Sans';
+	font-weight: 300;
+}
