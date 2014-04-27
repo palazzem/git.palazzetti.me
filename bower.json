@@ -20,5 +20,6 @@
     "tests"
   ],
   "dependencies": {
+    "hamburger-menu": "*"
   }
 }
