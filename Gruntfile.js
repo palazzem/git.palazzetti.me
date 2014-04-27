@@ -33,10 +33,9 @@ module.exports = function(grunt) {
         files: [
           '.tmp/*.html',
           '.tmp/css/{,*/}*.css',
-          '<%= config.dist %>/{,*/}*.html',
-          '<%= config.dist %>/assets/{,*/}*.css',
-          '<%= config.dist %>/assets/{,*/}*.js',
-          '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= config.src %>/assets/{,*/}*.css',
+          '<%= config.src %>/assets/{,*/}*.js',
+          '<%= config.src %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -53,7 +52,7 @@ module.exports = function(grunt) {
           open: true,
           base: [
             '.tmp',
-            '<%= config.dist %>'
+            '<%= config.src %>'
           ]
         }
       }
