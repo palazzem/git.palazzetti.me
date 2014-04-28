@@ -10,8 +10,12 @@
 	background-color: $menu-color;
 }
 
-.container {
-	margin-top: $menu-height;
+.content {
+    margin: $menu-height auto;
+    padding: 0 2em;
+    max-width: 800px;
+    margin-bottom: 50px;
+    line-height: 1.6em;
 }
 
 h1, p {
