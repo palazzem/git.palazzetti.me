@@ -20,6 +20,8 @@
     "tests"
   ],
   "dependencies": {
-    "hamburger-menu": "*"
+    "hamburger-menu": "*",
+    "normalize.css": "~3.0.1",
+    "pure": "~0.4.2"
   }
 }
