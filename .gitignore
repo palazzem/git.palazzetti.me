@@ -28,3 +28,6 @@ node_modules
 
 # gh-pages build
 .grunt/
+
+# OSX
+.DS_Store
