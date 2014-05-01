@@ -7,6 +7,10 @@ body {
   padding: 15px;
 }
 
+footer {
+  @extend .content;
+}
+
 .top-navbar {
   top: 0;
   left: 0;
@@ -21,6 +25,10 @@ body {
 .content {
   margin: auto;
   max-width: $content-width;
+}
+
+.center {
+  text-align: center;
 }
 
 // Typography
