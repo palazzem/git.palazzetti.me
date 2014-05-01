@@ -1,24 +1,55 @@
-// Blog styles
+// Main styles
 // -----------
 
-.top-navbar {
-	top: 0;
-	height: $menu-height;
-	width: 100%;
+body {
+  background-color: $background-color;
+  margin-top: ($menu-height - 10);
+  padding: 15px;
+}
 
-	position: fixed;
-	background-color: $menu-color;
+.top-navbar {
+  top: 0;
+  height: $menu-height;
+  width: 100%;
+
+  position: fixed;
+  background-color: $menu-color;
 }
 
 .content {
-    margin: $menu-height auto;
-    padding: 0 2em;
-    max-width: 800px;
-    margin-bottom: 50px;
-    line-height: 1.6em;
+  margin: auto;
+  max-width: $content-width;
 }
 
-h1, p {
-	font-family: 'Open Sans';
-	font-weight: 300;
+// Typography
+// ----------
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: $font-family-base;
+  font-weight: $font-weight-base;
+}
+
+p {
+  letter-spacing: $letter-spacing-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+
+  @media screen and (max-width: $menu-mobile-limit) {
+    font-size: 16px;
+  }
+}
+
+// Hamburger menu
+// --------------
+
+.hamburger-list {
+  a {
+    font-family: $font-family-base;
+    font-weight: $font-weight-base;
+    text-rendering: optimizeLegibility;
+
+    &::before {
+      font-family: $icon-family-base;
+    }
+  }
 }

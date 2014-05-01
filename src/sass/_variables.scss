@@ -1,25 +1,46 @@
+// Base variables
+// --------------
+
+$background-color: #f2f2f2;
+$content-width: 800px;
+$menu-height: 60px;
+
+// Typography
+// ----------
+
+// Font family
+$font-family-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: Menlo, Monaco, Consolas, "Courier New", monospace;
+
+$font-family-base: "Open Sans", $font-family-sans-serif;
+$icon-family-base: "FontAwesome";
+
+// Size
+$font-size-base: 20px;
+$font-weight-base: 300;
+$line-height-base: 1.5;
+$letter-spacing-base: 0.03rem;
+
+// Computed size
+$font-size-large: ceil(($font-size-base * 1.25));
+$font-size-small: ceil(($font-size-base * 0.85));
+
 // Hamburger overrides
 // -------------------
 
 // Color settings
-$menu-color: #ffffff !default;
-$menu-color-text: #583f7e !default;
-$menu-color-lines: #edf1f2 !default;
+$menu-color: #dd4814;
+$menu-color-text: #fff;
+$menu-color-lines: #ea4c17;
 
 // Dimensions
-$menu-width: 60px !default;
-$menu-width-full: 300px !default;
-$menu-height: 60px !default;
+$menu-height: 60px;
 
-$menu-button-size: 24px !default;
-$menu-item-size: 22px !default;
+$menu-button-size: $font-size-large;
+$menu-item-size: $font-size-large;
 
 // Animations
-$menu-transition-time: 0.3s !default;
+$menu-transition-time: 0.3s;
 
 // Mobile settings
-$menu-mobile-limit: 767px !default;
-$menu-mobile-width: 768px !default;
-
-// Base
-// ----
+$menu-mobile-limit: 767px;
