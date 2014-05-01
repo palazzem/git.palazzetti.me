@@ -9,10 +9,12 @@ body {
 
 .top-navbar {
   top: 0;
+  left: 0;
   height: $menu-height;
   width: 100%;
 
   position: fixed;
+  border-bottom: 1px solid $menu-color-lines;
   background-color: $menu-color;
 }
 
