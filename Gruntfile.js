@@ -19,7 +19,7 @@ module.exports = function(grunt) {
 
     watch: {
       assemble: {
-        files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
+        files: ['<%= config.src %>/{posts,pages,data,templates}/{,*/}*.{md,hbs,yml}'],
         tasks: ['assemble']
       },
       compass: {
@@ -227,26 +227,33 @@ module.exports = function(grunt) {
       ]
     },
 
+    // Static blog generator
     assemble: {
-      pages: {
-        options: {
-          flatten: true,
-          layout: 'default.hbs',
-          layoutdir: '<%= config.src %>/templates/layouts',
-          data: '<%= config.src %>/data/*.{json,yml}',
-          assets: '<%= config.dist %>/assets',
-          partials: '<%= config.src %>/templates/partials/*.hbs',
-          plugins: ['assemble-contrib-permalinks','assemble-contrib-sitemap'],
+      options: {
+        flatten: true,
+        layout: 'main.hbs',
+        layoutdir: '<%= config.src %>/templates/layouts',
+        data: '<%= config.src %>/data/*.{json,yml}',
+        assets: '<%= config.src %>/assets',
+        partials: '<%= config.src %>/templates/partials/*.hbs',
+        plugins: ['assemble-contrib-permalinks', 'assemble-contrib-sitemap'],
+        permalinks: {
+          structure: ':basename/index.html'
         },
+        sitemap: {
+          homepage: 'http://git.palazzetti.me',
+          relativedest: true
+        }
+      },
+      pages: {
         files: {
-          '.tmp/': ['<%= config.src %>/templates/pages/*.hbs']
+          '.tmp/': ['<%= config.src %>/pages/*.hbs', '<%= config.src %>/posts/*.hbs']
         }
       }
     },
 
     // Before generating any new files,
     // remove any previously-created files.
-
     clean: {
       dist: {
         files: [
