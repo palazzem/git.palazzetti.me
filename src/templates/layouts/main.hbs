@@ -25,7 +25,9 @@
     {{> navbar }}
 
     <div class="content">
-      {{> body }}
+      {{#markdown }}
+        {{> body }}
+      {{/markdown }} 
     </div>
 
     {{> footer }}

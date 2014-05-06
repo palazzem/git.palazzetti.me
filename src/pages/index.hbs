@@ -1,0 +1,18 @@
+---
+lang: en
+title: Home
+date: 2014-01-29
+category: menu
+---
+
+<div class="center">
+  <h1>'slogan placeholder'</h1>
+  <h3 class="subtitle">I'm Emanuele Palazzetti, software developer focused on #python, #javascript and #android</h3>
+  <hr/>
+  <h2>Commits</h2>
+  {{#each pages}}
+  	{{#isnt data.category "menu"}}
+  	<p><a href="/{{basename}}/">{{data.title}}</a></p>
+  	{{/isnt}}
+  {{/each}}
+</div>
