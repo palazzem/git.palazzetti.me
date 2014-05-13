@@ -11,8 +11,8 @@ category: menu
   <hr/>
   <h2>Commits</h2>
   {{#each pages}}
-  	{{#isnt data.category "menu"}}
-  	<p><a href="/{{basename}}/">{{data.title}}</a></p>
-  	{{/isnt}}
+    {{#isnt data.category "menu"}}
+    <p><a href="/{{basename}}/">{{data.hash}}</a> <a href="/{{basename}}/">{{data.title}}</a> (HEAD, origin/master)</p>
+    {{/isnt}}
   {{/each}}
 </div>
