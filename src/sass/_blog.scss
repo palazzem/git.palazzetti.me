@@ -2,7 +2,11 @@
 // -----------
 
 body {
+  font-family: $font-family-base;
+  font-weight: $font-weight-base;
+
   background-color: $background-color;
+
   margin-top: ($menu-height - 10);
   padding: 15px;
 }
@@ -17,6 +21,7 @@ footer {
   height: $menu-height;
   width: 100%;
 
+  z-index: 1030;
   position: fixed;
   border-bottom: 1px solid $menu-color-lines;
   background-color: $menu-color;
@@ -91,5 +96,18 @@ a {
     &::before {
       font-family: $icon-family-base;
     }
+  }
+}
+
+// List items (with FontAwesome)
+// -----------------------------
+
+.fa-ul {
+  > li {
+    padding: 0.5em;
+  }
+
+  .fa-li {
+    top: 0.742857em;
   }
 }
