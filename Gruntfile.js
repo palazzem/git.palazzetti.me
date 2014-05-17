@@ -120,8 +120,9 @@ module.exports = function(grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '.tmp/index.html',
+      html: 'dist/index.html',
       options: {
+        root: '<%= config.src %>',
         dest: '<%= config.dist %>'
       }
     },
@@ -158,6 +159,12 @@ module.exports = function(grunt) {
             dest: '<%= config.dist %>/img'
           }
         ]
+      }
+    },
+    cssmin: {
+      options: {
+        report: 'gzip',
+        keepSpecialComments: 0
       }
     },
     htmlmin: {
@@ -213,20 +220,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // Run some tasks in parallel to speed up the build process
-    concurrent: {
-      server: [
-        'compass:server',
-        'assemble'
-      ],
-      dist: [
-        'compass:dist',
-        'assemble',
-        'imagemin',
-        'svgmin'
-      ]
-    },
-
     // Static blog generator
     assemble: {
       options: {
@@ -234,7 +227,6 @@ module.exports = function(grunt) {
         layout: 'main.hbs',
         layoutdir: '<%= config.src %>/templates/layouts',
         data: '<%= config.src %>/data/*.{json,yml}',
-        assets: '<%= config.src %>/assets',
         partials: '<%= config.src %>/templates/partials/*.hbs',
         plugins: ['assemble-contrib-permalinks', 'assemble-contrib-sitemap'],
         permalinks: {
@@ -248,6 +240,11 @@ module.exports = function(grunt) {
       pages: {
         files: {
           '.tmp/': ['<%= config.src %>/pages/*.hbs', '<%= config.src %>/posts/*.hbs']
+        }
+      },
+      dist: {
+        files: {
+          '<%= config.dist %>/': ['<%= config.src %>/pages/*.hbs', '<%= config.src %>/posts/*.hbs']
         }
       }
     },
@@ -276,6 +273,20 @@ module.exports = function(grunt) {
         base: 'dist'
       },
       src: ['**']
+    },
+
+    // Run some tasks in parallel to speed up the build process
+    concurrent: {
+      server: [
+        'compass:server',
+        'assemble:pages'
+      ],
+      dist: [
+        'compass:dist',
+        'assemble:dist',
+        'imagemin',
+        'svgmin'
+      ]
     }
 
   });
@@ -302,7 +313,7 @@ module.exports = function(grunt) {
     'concat',
     'copy:dist',
     'cssmin',
-    // 'uglify',
+    'uglify',
     'rev',
     'usemin',
     'htmlmin'
