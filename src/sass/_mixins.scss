@@ -1,0 +1,7 @@
+// Easy mixins
+// -----------
+
+@mixin border-top() {
+  border-top: 1px solid #000;
+  padding-top: 15px;
+}

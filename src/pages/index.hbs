@@ -5,13 +5,15 @@ date: 2014-01-29
 category: menu
 ---
 
-<div class="text-center">
+<header class="text-center">
   <h1>Commits for developers!</h1>
   <h2 class="subtitle">
     I'm Emanuele Palazzetti, software developer focused on<br/>
     #python, #javascript and #android
   </h2>
-  <hr/>
+</header>
+
+<section class="text-center">
   <h2>$ git log</h2>
   {{#each pages}}
   {{#isnt data.category "menu"}}
@@ -25,7 +27,9 @@ category: menu
   </div>
   {{/isnt}}
   {{/each}}
-  <hr/>
+</section>
+
+<section>
   <h2>Maintainer or Contributor of these Open Source Projects</h2>
   <div class="text-left">
     <ul class="fa-ul">
@@ -35,7 +39,9 @@ category: menu
       <li><i class="fa-li fa fa-slack"></i> <a href="">This blog</a> - Made with a static site generator and SASS</li>
     </ul>
   </div>
-  <hr/>
+</section>
+
+<section>
   <h2>Follow me on</h2>
   <div class="text-left">
     <ul class="fa-ul">
@@ -46,4 +52,4 @@ category: menu
       <li><i class="fa-li fa fa-slack"></i> <a href="https://speakerdeck.com/palazzem">Speakerdeck</a></li>
     </ul>
   </div>
-</div>
+</section>
