@@ -27,8 +27,19 @@ footer {
   max-width: $content-width;
 }
 
-.center {
+// Helpers
+// -------
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 // Typography
