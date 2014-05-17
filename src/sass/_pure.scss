@@ -1,3 +1,11 @@
 // Pure customizations
 // -------------------
 
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+  @extend p;
+}
+
+.l-box {
+  padding: 0.5em;
+}

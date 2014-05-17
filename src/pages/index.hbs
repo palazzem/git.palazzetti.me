@@ -11,8 +11,15 @@ category: menu
   <hr/>
   <h2>Commits</h2>
   {{#each pages}}
-    {{#isnt data.category "menu"}}
-    <p><a href="/{{basename}}/">{{data.hash}}</a> <a href="/{{basename}}/">{{data.title}}</a> (HEAD, origin/master)</p>
-    {{/isnt}}
+  {{#isnt data.category "menu"}}
+  <div class="pure-g">
+    <div class="pure-u-2-6 pure-hidden-phone">
+      <div class="l-box"><a class="source-code" href="/{{basename}}/">{{data.hash}}</a></div>
+    </div>
+    <div class="pure-u-4-6 text-left">
+      <div class="l-box"><a href="/{{basename}}/">{{data.title}}</a></div>
+    </div>
+  </div>
+  {{/isnt}}
   {{/each}}
 </div>
