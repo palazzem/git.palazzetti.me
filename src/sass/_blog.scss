@@ -33,6 +33,9 @@ footer {
 
 // Typography
 // ----------
+h1, h2, h3, h4, h5, h6 {
+  color: $header-color;
+}
 
 h1, h2, h3, h4, h5, h6, p {
   font-family: $font-family-base;
@@ -41,16 +44,23 @@ h1, h2, h3, h4, h5, h6, p {
 
 p {
   letter-spacing: $letter-spacing-base;
-  font-size: $font-size-base;
   line-height: $line-height-base;
+  font-size: $font-size-base;
 
   @media screen and (max-width: $menu-mobile-limit) {
-    font-size: 16px;
+    font-size: $font-size-small;
   }
 }
 
 .subtitle {
-  color: #666665;
+  color: $subtitle-color;
+}
+
+a {
+  text-decoration: none;
+  color: $link-color;
+
+  &:hover { font-weight: bold; }
 }
 
 // Hamburger menu
