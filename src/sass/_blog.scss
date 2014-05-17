@@ -63,15 +63,20 @@ p {
   }
 }
 
-.subtitle {
-  color: $subtitle-color;
-}
-
 a {
   text-decoration: none;
   color: $link-color;
 
   &:hover { font-weight: bold; }
+}
+
+.subtitle {
+  color: $subtitle-color;
+}
+
+.source-code {
+  @extend p;
+  font-family: $font-family-source;
 }
 
 // Hamburger menu
