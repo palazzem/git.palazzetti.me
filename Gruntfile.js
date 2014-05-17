@@ -231,10 +231,6 @@ module.exports = function(grunt) {
         plugins: ['assemble-contrib-permalinks', 'assemble-contrib-sitemap'],
         permalinks: {
           structure: ':basename/index.html'
-        },
-        sitemap: {
-          homepage: 'http://git.palazzetti.me',
-          relativedest: true
         }
       },
       pages: {
@@ -243,6 +239,13 @@ module.exports = function(grunt) {
         }
       },
       dist: {
+        options: {
+          sitemap: {
+            homepage: 'http://git.palazzetti.me',
+            relativedest: true,
+            dest: '<%= config.dist %>'
+          }
+        },
         files: {
           '<%= config.dist %>/': ['<%= config.src %>/pages/*.hbs', '<%= config.src %>/posts/*.hbs']
         }
