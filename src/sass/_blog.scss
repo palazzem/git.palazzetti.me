@@ -89,6 +89,10 @@ a {
   color: $link-color;
 
   &:hover { font-weight: bold; }
+
+  &.inverse {
+    color: $link-color-inverse;
+  }
 }
 
 .subtitle {
