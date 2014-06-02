@@ -5,3 +5,8 @@
   border-top: 1px solid #000;
   padding-top: 15px;
 }
+
+@mixin border-bottom() {
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 15px;
+}
