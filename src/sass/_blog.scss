@@ -101,11 +101,14 @@ a {
   text-decoration: none;
   color: $link-color;
 
-  &:hover { font-weight: $font-weight-bold; }
+  &:hover { color: $link-color-inverse; }
+}
 
-  &.inverse {
-    color: $link-color-inverse;
-  }
+a.inverse {
+  text-decoration: none;
+  color: $link-color-inverse;
+
+  &:hover { color: $link-color; }
 }
 
 .subtitle {
