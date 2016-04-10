@@ -2,6 +2,7 @@ baseurl = "https://palazzetti.me"
 languageCode = "en-us"
 title = "palazzetti.me"
 theme = "beautifulhugo"
+googleAnalytics = "UA-22634291-11"
 
 [Params]
   gravatar = "f41ed5aca6a95f4c80b61850071ad557"
