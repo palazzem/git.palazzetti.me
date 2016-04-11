@@ -1,4 +1,4 @@
-baseurl = "https://palazzetti.me"
+baseurl = "https://palazzetti.me/"
 languageCode = "en-us"
 title = "palazzetti.me"
 theme = "beautifulhugo"
