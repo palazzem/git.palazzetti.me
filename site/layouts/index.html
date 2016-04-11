@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  {{ partial "head.html" . }}
+  <body>
+    {{ partial "nav.html" . }}
+
+    <header class="header-section ">
+      <div class="intro-header no-img">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+              <div class="page-heading">
+                {{if .Site.Params.subtitle}}
+                  <hr class="small">
+                  <span class="page-subheading">{{.Site.Params.subtitle}}</span>
+                {{end}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div role="main" class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <div class="posts-list">
+            {{ $pag := .Paginate (where .Data.Pages "Type" "section") }}
+            {{ range $pag.Pages }}
+            <article class="post-preview">
+          	  <h2 class="post-title">{{ .Title }}</h2>
+
+              <div class="post-entry">
+                {{ .Content }}
+              </div>
+
+             </article>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+  </body>
+</html>
