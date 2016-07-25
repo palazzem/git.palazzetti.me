@@ -9,6 +9,7 @@ lib-cov
 *.gz
 
 # Builds
+public/
 dist/
 .sass-cache/
 .tmp/
